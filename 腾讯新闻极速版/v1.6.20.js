@@ -4,7 +4,7 @@ var config = {
     mode: "new",
     startNewNo: 7, //从第几个新闻开始(0-10)
     continuReadNum: 20, //连续阅读数,防止app出现不能通过向上滑动切换新闻的情况
-    workTime: 60000 * 1, //工作时间
+    workTime: 60000 * 45, //工作时间
     restTime: 60000 * 1, //休息时间
     noRest: false, //不休模式
 }
@@ -38,6 +38,7 @@ function start() {
 
 //等待新闻列表出现
 function waitList(i) {
+    //as为列表页新闻标题id
     if (!id("as").exists() && i > 0) {
         sleep(10);
         waitList(--i);
@@ -55,6 +56,7 @@ function readNews() {
         if (isNewsPage()) {
             sleep(1500);
             log("readNews")
+            //aw6为红包id
             log(id("aw6").exists())
             if (id("aw6").exists() && continuReadNum > 0) {
                 continuReadNum--;
@@ -103,7 +105,7 @@ function toNextNew() {
 //滑动到最后
 function scrollDown() {
     // log(text("查看更多评论").exists())
-    //没评论或者评论小于5
+    //nk为评论总数,防止没评论或者评论小于5
     var commentNum = id("nk").findOne(200).text(),
         flag;
     log("评论总数:" + commentNum)
@@ -122,7 +124,7 @@ function scrollDown() {
     var waitArr = [800, 1100, 1200, 1000, 800, 500, 600, 500],
         waitFlag = 0,
         swipeNum = 0;
-    //ai9为抢沙发
+    //ahx为抢沙发,ne为每一条评论下的时间
     while (!(text("查看更多评论").exists() || id("ahx").exists() || (flag && id("ne").find().size() == flag))) {
         if (waitArr[waitFlag]) {
             sleep(waitArr[waitFlag++])
@@ -137,7 +139,7 @@ function scrollDown() {
         backAndEnter(8);
         refreshNews();
     } else if (id("ahx").exists()) {
-        log("ahx")
+        log("抢沙发")
         //防止没有滚到最后
         for (var index = 0; index < 6; index++) {
             swipe(random(200, 300), 800, random(200, 300), 700, 300)
@@ -191,7 +193,6 @@ function openAPP() {
     app.launchApp("腾讯新闻极速版");
     // app.launch("com.tencent.news.lite");
     // waitForActivity("com.tencent.news.activity.SplashActivity");
-
 }
 
 //关闭app,有bug,无法调用:result返回true,但是没有跳转到设置页
@@ -220,5 +221,6 @@ function isNewsPage() {
 
 //是否是主页
 function isHomePage() {
-    return currentActivity() === "com.tencent.news.activity.SplashActivity" && id("aix").findOne(200) == null;
+    //ail是视频新闻播放页最上方的发布者名称的id,防止把这个页面误判为首页
+    return currentActivity() === "com.tencent.news.activity.SplashActivity" && id("ail").findOne(200) == null;
 }
