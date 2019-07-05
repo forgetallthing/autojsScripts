@@ -1,4 +1,4 @@
-toast('开始机器学习~');
+toast('开始机器学习~支持腾讯新闻极速版v1.6.20版本');
 
 var config = {
     mode: "new",
@@ -8,6 +8,16 @@ var config = {
     restTime: 60000 * 1, //休息时间
     noRest: false, //不休模式
 }
+
+var assemblyId = {
+    newList: "as", //列表页新闻标题id
+    redPacket: "aw6", //红包id
+    commentNum: "nk", //新闻页最下方评论总数id
+    sofa:"ahx",//抢沙发id
+    commentTime:"ne",//每一条评论下的时间id
+    isHomePage:"b1d",//视频新闻页有而首页没有的组件id,目前为右下角
+}
+
 setScreenMetrics(1080, 1920);
 var continuReadNum = config.continuReadNum,
     workTime = config.workTime;
@@ -26,7 +36,7 @@ function start() {
     text("推荐").findOne().click();
     text("推荐").findOne().click();
     sleep(1000)
-    var ar = id("as").find();
+    var ar = id(assemblyId.newList).find();
     log("start" + ar.size());
     var num = config.startNewNo >= ar.size() ? ar.size() - 1 : config.startNewNo;
     ar.get([num]).parent().click();
@@ -38,8 +48,7 @@ function start() {
 
 //等待新闻列表出现
 function waitList(i) {
-    //as为列表页新闻标题id
-    if (!id("as").exists() && i > 0) {
+    if (!id(assemblyId.newList).exists() && i > 0) {
         sleep(10);
         waitList(--i);
     } else if (i < 0) {
@@ -56,9 +65,8 @@ function readNews() {
         if (isNewsPage()) {
             sleep(1500);
             log("readNews")
-            //aw6为红包id
-            log(id("aw6").exists())
-            if (id("aw6").exists() && continuReadNum > 0) {
+            log(id(assemblyId.redPacket).exists())
+            if (id(assemblyId.redPacket).exists() && continuReadNum > 0) {
                 continuReadNum--;
                 toastLog("再读" + continuReadNum + "篇后刷新");
                 if (!config.noRest) {
@@ -80,7 +88,7 @@ function readNews() {
 
 //等待红包打开,超过8秒未打开则继续
 function waitTipOpen(i) {
-    if (id("aw6").exists() && i > 0) {
+    if (id(assemblyId.redPacket).exists() && i > 0) {
         sleep(10);
         waitTipOpen(--i);
     }
@@ -105,8 +113,8 @@ function toNextNew() {
 //滑动到最后
 function scrollDown() {
     // log(text("查看更多评论").exists())
-    //nk为评论总数,防止没评论或者评论小于5
-    var commentNum = id("nk").findOne(200).text(),
+    //防止没评论或者评论小于5
+    var commentNum = id(assemblyId.commentNum).findOne(200).text(),
         flag;
     log("评论总数:" + commentNum)
     if (commentNum) {
@@ -118,14 +126,14 @@ function scrollDown() {
 
     log("开始while循环:" + flag)
     log(text("查看更多评论").exists())
-    log(id("ahx").exists())
-    log(id("ne").find().size())
+    log(id(assemblyId.sofa).exists())
+    log(id(assemblyId.commentTime).find().size())
 
     var waitArr = [800, 1100, 1200, 1000, 800, 500, 600, 500],
         waitFlag = 0,
         swipeNum = 0;
-    //ahx为抢沙发,ne为每一条评论下的时间
-    while (!(text("查看更多评论").exists() || id("ahx").exists() || (flag && id("ne").find().size() == flag))) {
+    //sofa为抢沙发,commentTime为每一条评论下的时间
+    while (!(text("查看更多评论").exists() || id(assemblyId.sofa).exists() || (flag && id(assemblyId.commentTime).find().size() == flag))) {
         if (waitArr[waitFlag]) {
             sleep(waitArr[waitFlag++])
         }
@@ -138,7 +146,7 @@ function scrollDown() {
         log("下拉超过60次，重新开始")
         backAndEnter(8);
         refreshNews();
-    } else if (id("ahx").exists()) {
+    } else if (id(assemblyId.sofa).exists()) {
         log("抢沙发")
         //防止没有滚到最后
         for (var index = 0; index < 6; index++) {
@@ -221,6 +229,6 @@ function isNewsPage() {
 
 //是否是主页
 function isHomePage() {
-    //ail是视频新闻播放页最上方的发布者名称的id,防止把这个页面误判为首页
-    return currentActivity() === "com.tencent.news.activity.SplashActivity" && id("ail").findOne(200) == null;
+    //判断有无评论组件,防止把视频新闻页面误判为首页
+    return currentActivity() === "com.tencent.news.activity.SplashActivity" && id(assemblyId.isHomePage).findOne(200) == null;
 }
