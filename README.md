@@ -32,4 +32,10 @@
 
 
 
+安装脚本：
+
 ![https://github.com/forgetallthing/autojsScripts/blob/master/GIF/%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%E6%BC%94%E7%A4%BA.gif](https://github.com/forgetallthing/autojsScripts/blob/master/GIF/安装脚本演示.gif)
+
+使用脚本：
+
+![https://github.com/forgetallthing/autojsScripts/blob/master/GIF/%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E6%95%99%E7%A8%8B.gif](https://github.com/forgetallthing/autojsScripts/blob/master/GIF/使用脚本教程.gif)
