@@ -20,6 +20,12 @@
 3. 在APP设置里打开**音量上键停止所有脚本**。
 4. 点击运行按钮(三角标志)，想停止运行的话按一下音量上键即可，运行中不要操作手机；
 
+下面的视频是如何从github安装腾讯新闻助手脚本
+
+<video id="video" controls="" preload="none" poster="http://qiniuyun.ipromiseyourlife.com/blog/20190522/iEfUWjhkgVXq.jpg?imageslim" style='width:30%;' >
+      <source id="wmv" src="http://qiniuyun.ipromiseyourlife.com/aa356745a892823178817eb2571e9cb3.mp4" type="video/mp4">
+  </video>
+
 
 
 ## 注意事项
