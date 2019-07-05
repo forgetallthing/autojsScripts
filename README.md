@@ -32,3 +32,4 @@
 
 
 
+![https://github.com/forgetallthing/autojsScripts/blob/master/GIF/%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%AC%E6%BC%94%E7%A4%BA.gif](https://github.com/forgetallthing/autojsScripts/blob/master/GIF/安装脚本演示.gif)
