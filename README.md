@@ -20,13 +20,7 @@
 3. 在APP设置里打开**音量上键停止所有脚本**。
 4. 点击运行按钮(三角标志)，想停止运行的话按一下音量上键即可，运行中不要操作手机；
 
-下面的视频是如何从github安装腾讯新闻助手脚本
-
-<video id="video" controls="" preload="none" poster="http://qiniuyun.ipromiseyourlife.com/blog/20190522/iEfUWjhkgVXq.jpg?imageslim" style='width:30%;' >
-      <source id="wmv" src="http://qiniuyun.ipromiseyourlife.com/aa356745a892823178817eb2571e9cb3.mp4" type="video/mp4">
-  </video>
-
-
+本页最下方为演示gif，如果想看视频示例，请到video文件夹下查看
 
 ## 注意事项
 
@@ -35,3 +29,6 @@
 - 基于分辨率**1080,1920**开发，运行脚本时请保证不要调到低分辨率模式
 - 脚本文件名为所支持应用的版本号，脚本不能运行的请先检查版本
 - 部分手机长时间执行脚本时会清理后台进程，如出现这种情况，请在手机设置里自行设置后台运行权限(每个品牌的手机设置不一样,如荣耀手机可以在 **手机设置-电池** 中管理应用的后台运行权限)
+
+
+
