@@ -13,9 +13,9 @@ var assemblyId = {
     newList: "as", //列表页新闻标题id
     redPacket: "aw6", //红包id
     commentNum: "nk", //新闻页最下方评论总数id
-    sofa:"ahx",//抢沙发id
-    commentTime:"ne",//每一条评论下的时间id
-    isHomePage:"b1d",//视频新闻页有而首页没有的组件id,目前为右下角
+    sofa: "ahx", //抢沙发id
+    commentTime: "ne", //每一条评论下的时间id
+    isHomePage: "b1d", //视频新闻页有而首页没有的组件id,目前为右下角
 }
 
 setScreenMetrics(1080, 1920);
